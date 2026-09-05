@@ -1,5 +1,7 @@
 # YunShu-Link（云枢）· 个人精简改编版
 
+![CI](https://github.com/absart-maker/yunshu-link-lite/actions/workflows/ci.yml/badge.svg)
+
 一套面向 ESP32 智能硬件的「端—边—云」协同 AI 语音交互平台。本目录是原开源项目
 [KingYeon-Zoo/YunShu-Link](https://github.com/KingYeon-Zoo/YunShu-Link)（MIT License）的
 **裁剪改编版本**，保留最核心的「语音 AI + 设备管理」主线，移除移动端、数字人演示工具与竞赛素材，
@@ -62,6 +64,7 @@ cd main/manager-web && npm install && npm run serve  # :8001
 - 功能文档索引：[docs/README.md](docs/README.md)
 - AI 引擎层原创设计文档：[main/xiaozhi-server/engine/README.md](main/xiaozhi-server/engine/README.md)
 - 运行与测试报告：[docs/RUNNING_AND_TESTS.md](docs/RUNNING_AND_TESTS.md)
+- 参与贡献：[CONTRIBUTING.md](CONTRIBUTING.md) · 安全说明：[SECURITY.md](SECURITY.md)
 - 部署与集成指南保留在 `docs/` 下（Docker、固件、MCP、RAGFlow、声纹、OTA 等）。
 
 ## 引擎层快速验证

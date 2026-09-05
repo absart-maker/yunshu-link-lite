@@ -1,0 +1,22 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  engine-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.10"
+      - name: Syntax check (whole server)
+        working-directory: main/xiaozhi-server
+        run: python -m compileall -q .
+      - name: Engine self-check (51 tests + 3 scenarios)
+        working-directory: main/xiaozhi-server
+        run: python -m engine.check
