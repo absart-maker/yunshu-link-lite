@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" font-family="Segoe UI, Microsoft YaHei, sans-serif">
+  <rect width="1200" height="760" fill="#f8fafc"/>
+  <text x="600" y="42" text-anchor="middle" font-size="26" font-weight="700" fill="#0f172a">YunShu-Link Lite · 架构总览</text>
+  <text x="600" y="70" text-anchor="middle" font-size="14" fill="#64748b">端 — 边 — 云 协同 AI 语音交互（原创引擎层为主，周边为 MIT 上游改编）</text>
+
+  <!-- 设备端 -->
+  <rect x="80" y="100" width="1040" height="86" rx="12" fill="#e0f2fe" stroke="#0ea5e9" stroke-width="2"/>
+  <text x="120" y="132" font-size="18" font-weight="700" fill="#075985">设备端 Devices</text>
+  <text x="120" y="158" font-size="14" fill="#0c4a6e">ESP32 硬件 / WebSocket 客户端 / 模拟设备（device_simulator）</text>
+  <text x="120" y="176" font-size="13" fill="#475569">发送 hello + 音频帧，接收 ready / listening / transcript / reply / audio</text>
+
+  <!-- 传输协议 -->
+  <rect x="80" y="218" width="1040" height="86" rx="12" fill="#f1f5f9" stroke="#94a3b8" stroke-width="2"/>
+  <text x="120" y="250" font-size="18" font-weight="700" fill="#334155">传输与协议 Transport</text>
+  <text x="120" y="276" font-size="14" fill="#475569">Frame / FrameCodec（JSON 信封）· AsyncTransport · 极简 WebSocket（标准库）</text>
+  <text x="120" y="294" font-size="13" fill="#64748b">WebSocketServer / LegacySessionChannel（旧协议适配）</text>
+
+  <!-- 原创引擎层 -->
+  <rect x="80" y="336" width="1040" height="190" rx="12" fill="#dcfce7" stroke="#10b981" stroke-width="3"/>
+  <text x="120" y="368" font-size="18" font-weight="700" fill="#065f46">原创 AI 引擎层 engine/（MIT，作者原创）</text>
+  <g font-size="14" fill="#065f46">
+    <text x="120" y="398">contracts.py —— ASR / LLM / TTS / VAD 能力契约</text>
+    <text x="120" y="424">registry.py + config.py —— Provider 注册与配置校验</text>
+    <text x="120" y="450">pipeline.py —— 异步编排状态机（超时/重试/降级/事件）</text>
+    <text x="120" y="476">session.py —— 多轮会话与生命周期管理</text>
+    <text x="120" y="502">observers.py —— 事件总线、日志与指标采集</text>
+  </g>
+  <text x="600" y="506" font-size="14" fill="#334155">bridge/ —— 旧 Provider 兼容（LLM/TTS/VAD/ASR/WebSocket）</text>
+
+  <!-- Provider 实现 -->
+  <rect x="80" y="558" width="640" height="100" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+  <text x="120" y="590" font-size="18" font-weight="700" fill="#92400e">Provider 实现</text>
+  <text x="120" y="616" font-size="14" fill="#78350f">标准参考实现（stubs）：EchoASR / RuleLLM / PaletteTTS / VAD</text>
+  <text x="120" y="640" font-size="13" fill="#57534e">真实模型：复用上游 providers（经 bridge 接入，MIT 保留署名）</text>
+
+  <!-- 管理端 -->
+  <rect x="760" y="558" width="360" height="100" rx="12" fill="#ede9fe" stroke="#8b5cf6" stroke-width="2"/>
+  <text x="800" y="590" font-size="18" font-weight="700" fill="#5b21b6">管理端（上游改编）</text>
+  <text x="800" y="616" font-size="14" fill="#5b21b6">manager-api（Java/Spring Boot）</text>
+  <text x="800" y="640" font-size="14" fill="#5b21b6">manager-web（Vue/Element）</text>
+
+  <!-- arrows -->
+  <g stroke="#64748b" stroke-width="2" fill="none" marker-end="url(#arrow)">
+    <line x1="600" y1="186" x2="600" y2="218"/>
+    <line x1="600" y1="304" x2="600" y2="336"/>
+    <line x1="600" y1="526" x2="600" y2="558"/>
+    <line x1="420" y1="658" x2="420" y2="700"/>
+    <line x1="940" y1="658" x2="940" y2="700"/>
+  </g>
+  <defs>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="3" orient="auto">
+      <path d="M0,0 L8,3 L0,6 z" fill="#64748b"/>
+    </marker>
+  </defs>
+  <text x="600" y="722" text-anchor="middle" font-size="13" fill="#94a3b8">验证：51/51 单元测试 + 三项运行场景（Demo / Simulator / WebSocket）通过</text>
+</svg>
