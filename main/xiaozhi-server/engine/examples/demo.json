@@ -1,0 +1,11 @@
+{
+  "engine": {
+    "asr": { "name": "echo", "options": {} },
+    "llm": { "name": "rule", "options": { "reply": "你好，我是 AI 引擎演示。" } },
+    "tts": { "name": "palette", "options": {} },
+    "vad": { "name": "always_voice", "options": {} },
+    "timeout_seconds": 10.0,
+    "max_retries": 1,
+    "fallback_llm": null
+  }
+}
